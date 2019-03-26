@@ -47,6 +47,8 @@ while True:
 			#print (str(Height) + "\t" + hex(X) + "\t" + hex(Y) + "\t" + str(X1) + "\t" + str(Y1))
 		elif data == bytearray(b'\x57\x00\xC2\x02'):
 			out = ser.read(2)
-			out = ser.read(6)
-			X, Y, Z = struct.unpack("hhh", out)
-			print (str(X) + "\t" + str(Y) + "\t" + str(Z))
+			out = ser.read(62)
+			X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N = struct.unpack("<hhhffffffffffffff", out)
+			# print (str(X) + "\t" + str(Y) + "\t" + str(Z) + "\t" + str(A) + "\t" + str(B) + "\t" + str(C) + "\t" + str(D) + "\t" + str(E) + "\t" + str(F) + "\t" + str(G))
+			# print ( str(X) + "\t" + str(Y) + "\t" + str(D) + "\t" + str(E))
+			print (str(N))
