@@ -4,7 +4,6 @@ import struct
 import binascii
 import serial
 
-ser = serial.Serial("/dev/tty.SLAB_USBtoUART", 115200)
 
 def serial_ports():
     """ Lists serial port names
@@ -36,6 +35,8 @@ def serial_ports():
 
 # print(serial_ports())
 
+ser = serial.Serial("COM3", 115200)
+
 while True:
 	data = ser.read()
 	if data == b'\x55':
@@ -45,6 +46,7 @@ while True:
 			out = ser.read(6)
 			Height, X, Y, X1, Y1 = struct.unpack("HBBBB", out)
 			#print (str(Height) + "\t" + hex(X) + "\t" + hex(Y) + "\t" + str(X1) + "\t" + str(Y1))
+			print ( Height )
 		elif data == bytearray(b'\x57\x00\xC2\x02'):
 			out = ser.read(2)
 			out = ser.read(62)
